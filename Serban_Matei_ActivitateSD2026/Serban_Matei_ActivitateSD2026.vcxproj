@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Sem3\Sem3\Sem3.c" />
     <ClCompile Include="Sem2.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Sem3\Sem3\masini.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
