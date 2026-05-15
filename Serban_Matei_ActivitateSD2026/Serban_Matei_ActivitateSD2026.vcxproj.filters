@@ -42,10 +42,14 @@
     <ClCompile Include="Sem10.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sem11.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\Sem3\Sem3\masini.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="muchii.txt" />
   </ItemGroup>
 </Project>

@@ -3,8 +3,6 @@
 //#include <stdlib.h>
 //#include <string.h>
 //
-////trebuie sa folositi fisierul masini.txt
-////sau va creati un alt fisier cu alte date
 //
 //struct StructuraMasina {
 //	int id;
@@ -15,7 +13,6 @@
 //	unsigned char serie;
 //};
 //typedef struct StructuraMasina Masina;
-//
 //
 //struct Heap {
 //	int lungime;
@@ -32,7 +29,7 @@
 //	Masina m1;
 //	aux = strtok(buffer, sep);
 //	m1.id = atoi(aux);
-//	m1.nrUsi = atoi(strtok(NULL, sep)); 
+//	m1.nrUsi = atoi(strtok(NULL, sep));
 //	m1.pret = atof(strtok(NULL, sep));
 //	aux = strtok(NULL, sep);
 //	m1.model = malloc(strlen(aux) + 1);
@@ -64,55 +61,108 @@
 //}
 //
 //void filtreazaHeap(Heap heap, int pozitieNod) {
-//	//filtreaza heap-ul pentru nodul a carei pozitie o primeste ca parametru
-//	int stanga = pozitieNod * 2 + 1;
-//	int dreapta = pozitieNod * 2 + 2;
+//
+//	int stanga = 2 * pozitieNod + 1;
+//	int dreapta = 2 * pozitieNod + 2;
 //	int pozMax = pozitieNod;
-//	if (stanga < heap.nrElemViz && heap.vector[stanga].pret > heap.vector[pozMax].pret)
+//	if (stanga<heap.nrElemViz && heap.vector[stanga].pret > heap.vector[pozMax].pret)
 //	{
 //		pozMax = stanga;
 //	}
-//	if (dreapta < heap.nrElemViz && heap.vector[dreapta].pret > heap.vector[pozMax].pret)
+//	if (dreapta<heap.nrElemViz && heap.vector[dreapta].pret > heap.vector[pozMax].pret)
 //	{
 //		pozMax = dreapta;
 //	}
 //	if (pozMax != pozitieNod)
 //	{
-//		Masina aux=heap.vector[pozMax];
+//		Masina aux = heap.vector[pozMax];
 //		heap.vector[pozMax] = heap.vector[pozitieNod];
 //		heap.vector[pozitieNod] = aux;
-//		if (pozMax <= (heap.nrElemViz - 2) / 2)
+//		if (pozMax < ((heap.nrElemViz - 2) / 2))
+//		{
 //			filtreazaHeap(heap, pozMax);
+//		}
 //	}
 //}
 //
 //Heap citireHeapDeMasiniDinFisier(const char* numeFisier) {
-//	//citim toate masinile din fisier si le stocam intr-un heap 
-//	// pe care trebuie sa il filtram astfel incat sa respecte 
-//	// principiul de MAX-HEAP sau MIN-HEAP dupa un anumit criteriu
-//	// sunt citite toate elementele si abia apoi este filtrat vectorul
+//
+//	FILE* f = fopen(numeFisier, "r");
+//	Heap heap = initializareHeap(10);
+//	if (f)
+//	{
+//
+//		while (!feof(f))
+//		{
+//			heap.vector[heap.nrElemViz++] = citireMasinaDinFisier(f);
+//		}
+//	}
+//	fclose(f);
+//	for (int i = (heap.nrElemViz - 2) / 2; i >= 0; i--)
+//	{
+//		filtreazaHeap(heap, i);
+//	}
+//
+//	return heap;
+//
 //}
 //
 //void afisareHeap(Heap heap) {
-//	//afiseaza elementele vizibile din heap
+//	for (int i = 0; i < heap.nrElemViz; i++)
+//	{
+//		afisareMasina(heap.vector[i]);
+//	}
 //}
 //
 //void afiseazaHeapAscuns(Heap heap) {
-//	//afiseaza elementele ascunse din heap
+//	for (int i = heap.nrElemViz; i < heap.lungime; i++)
+//	{
+//		afisareMasina(heap.vector[i]);
+//	}
 //}
 //
-//Masina extrageMasina(void* heap) {
-//	//extrage si returneaza masina de pe prima pozitie
-//	//elementul extras nu il stergem...doar il ascundem
+//Masina extrageMasina(Heap* heap) {
+//	Masina aux;
+//	aux.id = -1;
+//	if (heap->nrElemViz > 0)
+//	{
+//		heap->nrElemViz--;
+//		aux = heap->vector[0];
+//		heap->vector[0] = heap->vector[heap->nrElemViz];
+//		heap->vector[heap->nrElemViz] = aux;
+//		filtreazaHeap(*heap, 0);
+//
+//	}
+//	return aux;
+//
+//
 //}
 //
 //
 //void dezalocareHeap(Heap* heap) {
-//	//sterge toate elementele din Heap
+//
+//	for (int i = 0; i < heap->lungime; i++)
+//	{
+//		free(heap->vector[i].numeSofer);
+//		free(heap->vector[i].model);
+//
+//	}
+//	free(heap->vector);
+//	heap->vector = NULL;
+//	heap->nrElemViz = 0;
+//	heap->lungime = 0;
+//
 //}
 //
 //int main() {
-//
-//
+//	Heap heap = citireHeapDeMasiniDinFisier("masini.txt");
+//	afisareHeap(heap);
+//	printf("Extrageri!\n");
+//	afisareMasina(extrageMasina(&heap));
+//	afisareMasina(extrageMasina(&heap));
+//	afisareMasina(extrageMasina(&heap));
+//	printf("Heap ascuns!!\n");
+//	afiseazaHeapAscuns(heap);
+//	dezalocareHeap(&heap);
 //	return 0;
 //}
