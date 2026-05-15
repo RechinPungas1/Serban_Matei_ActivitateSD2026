@@ -93,7 +93,6 @@
 //}
 //
 //void dezalocareListaMasini(Nod** temp) {
-//	
 //	while (*temp) {
 //		free((*temp)->info.model);
 //		free((*temp)->info.numeSofer);

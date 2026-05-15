@@ -193,17 +193,18 @@
 //	//tratati situatia ca masina se afla si pe prima pozitie, si pe ultima pozitie
 //	if (ld->prim && ld->prim->info.id == id)
 //	{
+//		Nod* temp = ld->prim;
 //		free(ld->prim->info.model);
 //		free(ld->prim->info.numeSofer);
 //		ld->prim = ld->prim->next;
-//		if (!ld->prim)
+//		if (ld->prim)
 //		{
-//			free(ld->prim->prev);
+//			ld->prim->prev = NULL;
 //		}
 //		else {
-//			free(ld->ultim);
 //			ld->ultim = NULL;
 //		}
+//		free(temp);
 //		return;
 //	}
 //	Nod* p = ld->prim;

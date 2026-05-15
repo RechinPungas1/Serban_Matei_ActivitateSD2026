@@ -33,6 +33,15 @@
     <ClCompile Include="Sem7.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sem8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sem9.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sem10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\Sem3\Sem3\masini.txt">

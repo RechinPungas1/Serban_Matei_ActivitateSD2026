@@ -12,7 +12,7 @@
 //	struct Telefon t;
 //	t.id = id;
 //	t.RAM = RAM;
-//	t.producator = (char*)malloc((strlen(producator) + 1) * sizeof(char));
+//	t.producator = malloc((strlen(producator) + 1) * sizeof(char));
 //	strcpy(t.producator, producator);
 //	t.pret = pret;
 //	t.serie = serie;
@@ -29,7 +29,7 @@
 //
 //void afisare(struct Telefon t) {
 //
-//	printf("ID: %d\nRAM: %d\nProducator: %s\nPret: %f\nSerie: %x\n\n", t.id, t.RAM, t.producator, t.pret, t.serie);
+//	printf("ID: %d\nRAM: %d\nProducator: %s\nPret: %f\nSerie: %c\n\n", t.id, t.RAM, t.producator, t.pret, t.serie);
 //
 //}
 //
@@ -45,7 +45,7 @@
 //
 //	struct Telefon* vectorNou = (struct Telefon*)malloc(sizeof(struct Telefon) * nrElementeCopiate);
 //
-//	for (int i = 0;i < nrElemente;i++)
+//	for (int i = 0;i < nrElementeCopiate;i++)
 //	{
 //		vectorNou[i] = copiazaTelefon(vector[i]);
 //	}
@@ -59,6 +59,7 @@
 //		free((*vector)[i].producator);
 //		(*vector)[i].producator = NULL;
 //	}
+//	free(*vector);
 //	*vector = NULL;
 //	*nrElemente = 0;
 //

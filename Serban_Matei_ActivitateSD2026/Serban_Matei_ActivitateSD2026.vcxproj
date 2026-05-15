@@ -128,11 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Sem3\Sem3\Sem3.c" />
+    <ClCompile Include="Sem10.c" />
     <ClCompile Include="Sem2.c" />
     <ClCompile Include="Sem4.c" />
     <ClCompile Include="Sem5.c" />
     <ClCompile Include="Sem6.c" />
     <ClCompile Include="Sem7.c" />
+    <ClCompile Include="Sem8.c" />
+    <ClCompile Include="Sem9.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\Sem3\Sem3\masini.txt" />
